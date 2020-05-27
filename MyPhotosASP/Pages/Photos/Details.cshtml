@@ -1,0 +1,34 @@
+﻿@page
+@model MyPhotosASP.Pages.Photos.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="main-container">
+    <h1>Details</h1>
+
+    <div class="multimedia-container">
+        <div class="multimedia">
+            <img src="@Model.GetUploadPath()" alt="Image" />
+            <div class="multimedia-description">
+                <p class="multimedia-prop">Name:</p>
+                <p>@Model.GetNameFromPath()</p>
+
+                <p class="multimedia-prop">Date Added:</p>
+                <p>@Html.DisplayFor(modelItem => Model.Multimedia.DateAdded)</p>
+
+                <p class="multimedia-prop">Date Created:</p>
+                <p>@Html.DisplayFor(modelItem => Model.Multimedia.DateCreated)</p>
+
+                <p class="multimedia-prop">Description:</p>
+                <p>@Html.DisplayFor(modelItem => Model.Multimedia.Description)</p>
+
+                <p class="multimedia-prop">Tags:</p>
+                <p>@Html.DisplayFor(modelItem => Model.Multimedia.AdditionalLabels)</p>
+
+                <p class="multimedia-prop">Weather:</p>
+                <p>@Html.DisplayFor(modelItem => Model.Multimedia.Weather)</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@page
+@model MyPhotosASP.Pages.Photos.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main-container">
+    <h1>Multimedia</h1>
+
+    <form>
+        Search By:
+        <select asp-for="Filter" asp-items="Html.GetEnumSelectList<IndexModel.SearchFilter>()">
+            <option value="">Choose a search criterion</option>
+        </select>
+        <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Search" />
+    </form>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Multimedias[0].Id)
+                </th>
+                <th>
+                    Photo
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Multimedias[0].Description)
+                </th>
+                <th>
+                    Tags
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Multimedias[0].Weather)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Multimedias[0].DateAdded)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Multimedias[0].DateCreated)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Multimedias)
+            {
+                <tr class="table-multimedia-row">
+                    <td> @Html.DisplayFor(modelItem => item.Id) </td>
+                    <td> <img src="@Model.GetUploadPath(item)" class="table-img" alt="Image" /> </td>
+                    <td> @Model.GetNameFromPath(item) </td>
+                    <td> @Html.DisplayFor(modelItem => item.Description) </td>
+                    <td> @Html.DisplayFor(modelItem => item.AdditionalLabels) </td>
+                    <td> @Html.DisplayFor(modelItem => item.Weather) </td>
+                    <td> @Html.DisplayFor(modelItem => item.DateAdded) </td>
+                    <td> @Html.DisplayFor(modelItem => item.DateCreated) </td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
