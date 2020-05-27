@@ -13,5 +13,3 @@ Imagini
 ![1](Imagini/4.PNG)
 
 ![1](Imagini/5.PNG)
-
-![1](Imagini/6.PNG)
