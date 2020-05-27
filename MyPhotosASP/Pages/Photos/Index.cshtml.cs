@@ -60,32 +60,32 @@ namespace MyPhotosASP.Pages.Photos
             }
         }
 
-        public List<MultimediaDTO> FilterMultimedia(List<MultimediaDTO> multimediaList)
+         public List<MultimediaDTO> FilterMultimedia(List<MultimediaDTO> multimediaList)
         {
             if (Filter == SearchFilter.Name)
-                return multimediaList.Where(s => s.Path.Contains(SearchString)).ToList();
+                return multimediaList.Where(s => s.Path.Contains(SearchString)).OrderBy(x => x.Path).ToList();
 
             if (Filter == SearchFilter.Description)
-                return multimediaList.Where(s => s.Description.Contains(SearchString)).ToList();
+                return multimediaList.Where(s => s.Description.Contains(SearchString)).OrderBy(x => x.Description).ToList();
 
             if (Filter == SearchFilter.Tags)
-                return multimediaList.Where(s => s.AdditionalLabels.Contains(SearchString)).ToList();
+                return multimediaList.Where(s => s.AdditionalLabels.Contains(SearchString)).OrderBy(x => x.AdditionalLabels).ToList();
 
             if (Filter == SearchFilter.Weather)
-                return multimediaList.Where(s => s.Weather.ToString().Contains(SearchString)).ToList();
+                return multimediaList.Where(s => s.Weather.ToString().Contains(SearchString)).OrderBy(x => x.Weather).ToList();
 
             if (Filter == SearchFilter.DateAdded)
-                return multimediaList.Where(s => s.DateAdded.ToString().Contains(SearchString)).ToList();
+                return multimediaList.Where(s => s.DateAdded.ToString().Contains(SearchString)).OrderBy(x => x.DateAdded).ToList();
 
             if (Filter == SearchFilter.DateModified)
-                return multimediaList.Where(s => s.DateModified.ToString().Contains(SearchString)).ToList();
+                return multimediaList.Where(s => s.DateModified.ToString().Contains(SearchString)).OrderBy(x => x.DateModified).ToList();
 
             return multimediaList;
         }
 
-        public string GetUploadPath(MultimediaDTO multimedia)
+        public int GetTotalMultimedias()
         {
-            return "uploads/" + multimedia.Id + Path.GetExtension(multimedia.Path);
+            return Multimedias.Count();
         }
 
         public string GetNameFromPath(MultimediaDTO multimedia)
